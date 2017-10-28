@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2c2f33"
     tools:context="com.example.kataiho.hacktx2017.MainActivity">
 
 
@@ -23,6 +24,7 @@
             android:ems="10"
             android:hint="Email:"
             android:inputType="textEmailAddress"
+            android:textColor="#ffffff"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="234dp" />
 
@@ -33,6 +35,7 @@
             android:ems="10"
             android:hint="Password:"
             android:inputType="textPassword"
+            android:textColor="#ffffff"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="286dp" />
 
@@ -42,6 +45,7 @@
             android:layout_height="48dp"
             android:layout_marginTop="40dp"
             android:text="Login"
+            android:textColor="#ffffff"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="377dp" />
 
@@ -50,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="Registration"
+            android:textColor="#ffffff"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="440dp" />
 
