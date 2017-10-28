@@ -1,5 +1,6 @@
 package com.example.kataiho.hacktx2017;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText emailField, passwordField;
     private Button loginButton, registerButton;
-
     public FirebaseAuth mAuth;
     public FirebaseAuth.AuthStateListener mAuthListener;
-
     private static final String TAG = "MainActivity";
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +58,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == registerButton) {
             //register the user
-            registerUser();
+            if (registerUser()) {
+                Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
+                startActivity(changeToDisasterSelection);
+            }
+
         }
         else if (view == loginButton) {
             //login the user via firebase
-            loginUser();
+            if (loginUser()) {
+                //switch screens
+                Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
+                startActivity(changeToDisasterSelection);
+            }
         }
     }
 
