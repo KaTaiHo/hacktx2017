@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (view == loginButton) {
             //login the user via firebase
-
+            loginUser();
         }
     }
 
-    private boolean registerUser() {
+    public boolean registerUser() {
         String userEmail = emailField.getText().toString().trim();
         String userPassword = emailField.getText().toString().trim();
 
@@ -84,14 +84,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(EmailPasswordActivity.this, R.string.auth_failed,
-                                    Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
                         }
 
                         // ...
@@ -101,8 +100,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
-    private boolean loginUser() {
-        return false;
+    public boolean loginUser() {
+        String userEmail = emailField.getText().toString().trim();
+        String userPassword = emailField.getText().toString().trim();
+
+        mAuth.signInWithEmailAndPassword(userEmail, userPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        }
+
+                        // ...
+                    }
+                });
+
+        return true;
     }
 
     @Override

@@ -7,39 +7,51 @@
     tools:context="com.example.kataiho.hacktx2017.MainActivity">
 
 
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="303dp"
-        android:layout_height="40dp"
-        android:text="Registration"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="439dp" />
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp">
 
-    <EditText
-        android:id="@+id/emailField"
-        android:layout_width="303dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:hint="Email:"
-        android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="224dp" />
+        <EditText
+            android:id="@+id/emailField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="240dp"
+            android:ems="10"
+            android:hint="Email:"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="234dp" />
 
-    <EditText
-        android:id="@+id/passwordField"
-        android:layout_width="303dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:hint="Password:"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="282dp" />
+        <EditText
+            android:id="@+id/passwordField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Password:"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="286dp" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="303dp"
-        android:layout_height="40dp"
-        android:text="Login"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="387dp" />
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="40dp"
+            android:text="Login"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Registration"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="440dp" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
