@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">hacktx2017</string>
+    <string name="auth_failed">Login Failed</string>
 </resources>
