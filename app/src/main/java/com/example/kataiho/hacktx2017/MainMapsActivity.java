@@ -1,6 +1,5 @@
 package com.example.kataiho.hacktx2017;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,9 +74,22 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
         mMap = googleMap;
 
         final ArrayList<List<Double>> myEmergCoordinates = new ArrayList<List<Double>>();
+        final ArrayList<String> typeOfEmergency = new ArrayList<String>();
+
+        final HashMap<String, Float> colorMap = new HashMap<>();
+        colorMap.put("Blizzard", new Float(BitmapDescriptorFactory.HUE_AZURE));
+        colorMap.put("Eruption", new Float(BitmapDescriptorFactory.HUE_RED));
+        colorMap.put("Earthquake", new Float(BitmapDescriptorFactory.HUE_YELLOW));
+        colorMap.put("Flood", new Float(BitmapDescriptorFactory.HUE_BLUE));
+        colorMap.put("Hurricane", new Float(BitmapDescriptorFactory.HUE_CYAN));
+        colorMap.put("Storm", new Float(BitmapDescriptorFactory.HUE_MAGENTA));
+        colorMap.put("Tsunami", new Float(BitmapDescriptorFactory.HUE_GREEN));
+        colorMap.put("Tornado", new Float(BitmapDescriptorFactory.HUE_VIOLET));
+        colorMap.put("Wildfire", new Float(BitmapDescriptorFactory.HUE_ORANGE));
 
         mDatabase.child("emergencies").addListenerForSingleValueEvent(new ValueEventListener() {
 
+            String severity;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -89,8 +102,13 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
                         HashMap<String, Object> dataTemp = (HashMap)(issue.getValue());
                         Double d1 = (Double)(dataTemp.get("latitude"));
                         Double d2 = (Double)(dataTemp.get("longitude"));
+                        severity = (String)dataTemp.get("severity");
                         temp.add(d1);
                         temp.add(d2);
+
+                        String type = (String)(dataTemp.get("emergencyType"));
+
+                        typeOfEmergency.add(type);
                         myEmergCoordinates.add(temp);
                     }
                 }
@@ -99,9 +117,11 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
                 }
                 System.out.println("size of this is " + myEmergCoordinates.size());
                 for (int i = 0; i < myEmergCoordinates.size(); i++) {
-                    System.out.println("Coordinate " + i + " = " + myEmergCoordinates);
+                    System.out.println("Severity Level: " + severity);
                     LatLng tempCoord = new LatLng(myEmergCoordinates.get(i).get(0), myEmergCoordinates.get(i).get(1));
-                    mMap.addMarker((new MarkerOptions().position(tempCoord).title("emergency " + i)));
+                    mMap.addMarker((new MarkerOptions().position(tempCoord).title("emergency " + i).icon(BitmapDescriptorFactory.defaultMarker(
+                            colorMap.get(typeOfEmergency.get(i))
+                    ))));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(tempCoord));
                 }
             }

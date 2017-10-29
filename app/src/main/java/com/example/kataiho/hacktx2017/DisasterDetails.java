@@ -57,12 +57,15 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_disaster_details);
-        disasterType = getIntent().getStringExtra("type");
+        disasterType = getIntent().getStringExtra("Type");
         TextView header = (TextView) findViewById(R.id.typeHeader);
         header.setText("Report a " + disasterType + " in your area");
 
         longitude = getIntent().getDoubleExtra("longitude", 0.0);
         latitude = getIntent().getDoubleExtra("latitude", 0.0);
+
+        System.out.println("longitude : " + longitude);
+        System.out.println("latitude : " + latitude);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -96,10 +99,11 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
         selectedRadioButton = (RadioButton) findViewById(selectedId);
         data = selectedRadioButton.getText().toString();
 
-        mDatabase.child("emergencies").child(uid).child("emergencyType").setValue(data);
+        mDatabase.child("emergencies").child(uid).child("severity").setValue(data);
         mDatabase.child("emergencies").child(uid).child("details").setValue(details.getText().toString());
         mDatabase.child("emergencies").child(uid).child("latitude").setValue(latitude);
         mDatabase.child("emergencies").child(uid).child("longitude").setValue(longitude);
+        mDatabase.child("emergencies").child(uid).child("emergencyType").setValue(disasterType);
 
 //        Intent changeToDisasterMap = new Intent(getApplicationContext(), DisasterMap.class);
 //        startActivity(changeToDisasterMap);
