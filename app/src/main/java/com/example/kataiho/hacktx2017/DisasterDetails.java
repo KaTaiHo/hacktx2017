@@ -90,7 +90,7 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
         RadioButton selectedRadioButton = (RadioButton) findViewById(selectedId);
         String data = selectedRadioButton.getText().toString();
 
-        mDatabase.child("users").child(uid).child("post").child("emergencyNeeded").setValue(data);
+        mDatabase.child("emergencies").child(uid).child("emergencyNeeded").setValue(data);
 
         selectedId = typeOfEmergencyGroup.getCheckedRadioButtonId();
         selectedRadioButton = (RadioButton) findViewById(selectedId);
