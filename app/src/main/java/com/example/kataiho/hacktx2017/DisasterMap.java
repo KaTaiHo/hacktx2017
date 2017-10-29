@@ -64,6 +64,9 @@ public class DisasterMap extends FragmentActivity implements OnMapReadyCallback,
            latitude =  marker.getPosition().latitude;
            longitude = marker.getPosition().longitude;
 
+            System.out.println("longitude : " + longitude);
+            System.out.println("latitude : " + latitude);
+
             event.putExtra("latitude", latitude);
             event.putExtra("longitude", longitude);
             event.putExtra("Type", disasterType);

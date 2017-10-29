@@ -34,6 +34,8 @@ public class DisasterSelection extends AppCompatActivity implements View.OnClick
 
         mapButton = (Button) findViewById(R.id.mapButton);
 
+        mapButton.setOnClickListener(this);
+
         blizzardButton.setOnClickListener(this);
         earthquakeButton.setOnClickListener(this);
         eruptionButton.setOnClickListener(this);
@@ -93,6 +95,10 @@ public class DisasterSelection extends AppCompatActivity implements View.OnClick
         else if(view == wildfireButton) {
             Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Wildfire");
+            startActivity(event);
+        }
+        else if(view == mapButton) {
+            Intent event = new Intent(getBaseContext(), MainMapsActivity.class);
             startActivity(event);
         }
     }
