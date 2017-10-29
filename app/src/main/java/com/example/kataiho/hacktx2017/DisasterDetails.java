@@ -15,6 +15,6 @@ public class DisasterDetails extends AppCompatActivity {
         TextView header = (TextView) findViewById(R.id.typeHeader);
         header.setText(disasterType);
 
-        
+
     }
 }
