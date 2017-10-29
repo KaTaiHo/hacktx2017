@@ -13,6 +13,8 @@ public class DisasterSelection extends AppCompatActivity implements View.OnClick
     private FloatingActionButton blizzardButton, earthquakeButton, eruptionButton, floodButton,
     hurricaneButton, stormButton, tornadoButton, tsunamiButton, wildfireButton;
 
+    private Button mapButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,8 @@ public class DisasterSelection extends AppCompatActivity implements View.OnClick
         tornadoButton = (FloatingActionButton) findViewById(R.id.tornadoButton);
         tsunamiButton = (FloatingActionButton) findViewById(R.id.tsunamiButton);
         wildfireButton = (FloatingActionButton) findViewById(R.id.wildfireButton);
+
+        mapButton = (Button) findViewById(R.id.mapButton);
 
         blizzardButton.setOnClickListener(this);
         earthquakeButton.setOnClickListener(this);

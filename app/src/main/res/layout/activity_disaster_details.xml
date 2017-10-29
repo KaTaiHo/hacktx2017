@@ -7,185 +7,181 @@
     android:background="#2c2f33"
     tools:context="com.example.kataiho.hacktx2017.DisasterDetails">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/typeHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:ems="10"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/rescueHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="Are you in need of emergency assistance?"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/emergencyGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#ffffff"
+                    android:text="Yes"
+                    android:textColor="#ffffff" />
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#ffffff"
+                    android:text="No"
+                    android:textColor="#ffffff" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20px"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/typeHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:ems="10"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="#ffffff"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/rescueHeader"
+                android:id="@+id/severityHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:text="Are you in need of emergency assistance?"
+                android:text="Are you in need of emergency assitance?"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:text="How intense are the conditions?" />
 
-            <LinearLayout
+            <RadioGroup
+                android:id="@+id/typeOfEmergencyGroup"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
-                <RadioGroup
-                    android:id="@+id/emergencyGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:buttonTint="#ffffff"
-                        android:text="Yes"
-                        android:textColor="#ffffff" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:buttonTint="#ffffff"
-                        android:text="No"
-                        android:textColor="#ffffff" />
-                </RadioGroup>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20px"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/severityHeader"
+                <RadioButton
+                    android:id="@+id/potentialRadio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:ems="10"
-                    android:text="Are you in need of emergency assitance?"
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:textSize="22sp"
-                    tools:text="How intense are the conditions?" />
+                    android:buttonTint="#ffffff"
+                    android:text="Potential"
+                    android:textColor="#ffffff" />
 
-                <RadioGroup
-                    android:id="@+id/typeOfEmergencyGroup"
+                <RadioButton
+                    android:id="@+id/minorRadio"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#ffffff"
+                    android:text="Minor"
+                    android:textColor="#ffffff" />
 
-                    <RadioButton
-                        android:id="@+id/potentialRadio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:buttonTint="#ffffff"
-                        android:text="Potential"
-                        android:textColor="#ffffff" />
+                <RadioButton
+                    android:id="@+id/moderateRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#ffffff"
+                    android:text="Moderate"
+                    android:textColor="#ffffff" />
 
-                    <RadioButton
-                        android:id="@+id/minorRadio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:buttonTint="#ffffff"
-                        android:text="Minor"
-                        android:textColor="#ffffff" />
+                <RadioButton
+                    android:id="@+id/severeRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#ffffff"
+                    android:text="Severe"
+                    android:textColor="#ffffff" />
 
-                    <RadioButton
-                        android:id="@+id/moderateRadio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:buttonTint="#ffffff"
-                        android:text="Moderate"
-                        android:textColor="#ffffff" />
-
-                    <RadioButton
-                        android:id="@+id/severeRadio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:buttonTint="#ffffff"
-                        android:text="Severe"
-                        android:textColor="#ffffff" />
-
-                    <RadioButton
-                        android:id="@+id/extremeRadio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:buttonTint="#ffffff"
-                        android:text="Extreme"
-                        android:textColor="#ffffff" />
-                </RadioGroup>
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:ems="10"
-                android:hint="Any other details?"
-                android:inputType="text"
-                android:textColor="#ffffff"
-                android:textColorHint="#f5f5f5"
-                android:textColorLink="@color/colorPrimary"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="286dp" />
-
-            <Button
-                android:id="@+id/submitDisaster"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="#bebebe"
-                android:text="Submit Report"
-                android:textColor="#23272a"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="377dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="bottom"/>
+                <RadioButton
+                    android:id="@+id/extremeRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#ffffff"
+                    android:text="Extreme"
+                    android:textColor="#ffffff" />
+            </RadioGroup>
 
         </LinearLayout>
-    </ScrollView>
+
+        <EditText
+            android:id="@+id/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:hint="Any other details?"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textColorHint="#f5f5f5"
+            android:textColorLink="@color/colorPrimary"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="286dp" />
+
+        <Button
+            android:id="@+id/submitDisaster"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="#bebebe"
+            android:text="Submit Report"
+            android:textColor="#23272a"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="377dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="bottom"/>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

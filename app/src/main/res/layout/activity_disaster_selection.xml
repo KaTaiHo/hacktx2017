@@ -204,6 +204,15 @@
                 tools:layout_editor_absoluteX="15dp"
                 tools:layout_editor_absoluteY="198dp" />
         </LinearLayout>
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/mapButton"
+        android:layout_width="306dp"
+        android:layout_height="0dp"
+        android:text="Map"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="456dp" />
 
 </android.support.constraint.ConstraintLayout>

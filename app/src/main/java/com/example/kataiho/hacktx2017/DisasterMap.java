@@ -39,6 +39,7 @@ public class DisasterMap extends FragmentActivity implements OnMapReadyCallback,
 
     public MarkerOptions marker;
 
+    public String disasterType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class DisasterMap extends FragmentActivity implements OnMapReadyCallback,
 
         button = (Button) findViewById(R.id.nextButton);
         button.setOnClickListener(this);
+
+        disasterType = getIntent().getStringExtra("Type");
     }
 
     @Override
@@ -63,6 +66,7 @@ public class DisasterMap extends FragmentActivity implements OnMapReadyCallback,
 
             event.putExtra("latitude", latitude);
             event.putExtra("longitude", longitude);
+            event.putExtra("Type", disasterType);
             startActivity(event);
         }
     }
@@ -161,7 +165,6 @@ public class DisasterMap extends FragmentActivity implements OnMapReadyCallback,
                 Log.i("System out", "onMarkerDrag...");
             }
         });
-
     }
 
     public void onLocationChanged(Location location) {
