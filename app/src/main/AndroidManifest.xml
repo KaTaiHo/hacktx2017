@@ -39,7 +39,10 @@
 
         <activity
             android:name=".DisasterMap"
-            android:label="@string/title_activity_disaster_map"></activity>
+            android:label="@string/title_activity_disaster_map" />
+        <activity
+            android:name=".MainMapsActivity"
+            android:label="@string/title_activity_main_maps"></activity>
     </application>
 
 </manifest>
