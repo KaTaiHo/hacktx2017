@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#2c2f33"
     tools:context="com.example.kataiho.hacktx2017.MainActivity">
 
 
@@ -17,18 +17,29 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:paddingHorizontal="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="143dp"
+            android:cropToPadding="false"
+            app:srcCompat="@drawable/banner" />
 
         <EditText
             android:id="@+id/usernameField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="5dp"
             android:ems="10"
             android:hint="Username:"
             android:inputType="textPersonName"
+            android:textColor="#ffffff"
+            android:textColorHint="#f5f5f5"
+            android:textColorLink="@color/colorPrimary"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="234dp" />
 
@@ -39,7 +50,9 @@
             android:ems="10"
             android:hint="Email:"
             android:inputType="textEmailAddress"
-            android:textColor="#000"
+            android:textColor="#ffffff"
+            android:textColorHint="#f5f5f5"
+            android:textColorLink="@color/colorPrimary"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="234dp" />
 
@@ -50,7 +63,9 @@
             android:ems="10"
             android:hint="Password:"
             android:inputType="textPassword"
-            android:textColor="#000"
+            android:textColor="#ffffff"
+            android:textColorHint="#f5f5f5"
+            android:textColorLink="@color/colorPrimary"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="286dp" />
 
@@ -59,8 +74,9 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="40dp"
+            android:backgroundTint="#bebebe"
             android:text="Login"
-            android:textColor="#000"
+            android:textColor="#23272a"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="377dp" />
 
@@ -68,11 +84,91 @@
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:backgroundTint="#bebebe"
             android:text="Registration"
-            android:textColor="#000"
+            android:textColor="#23272a"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="440dp" />
 
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#ffffff"-->
+    <!--tools:context="com.example.kataiho.hacktx2017.MainActivity">-->
+
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/linearLayout"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="505dp"-->
+        <!--android:layout_marginEnd="1dp"-->
+        <!--android:layout_marginStart="1dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/usernameField"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="220dp"-->
+            <!--android:ems="10"-->
+            <!--android:hint="Username:"-->
+            <!--android:inputType="textPersonName"-->
+            <!--tools:layout_editor_absoluteX="8dp"-->
+            <!--tools:layout_editor_absoluteY="234dp" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/emailField"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:ems="10"-->
+            <!--android:hint="Email:"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:textColor="#000"-->
+            <!--tools:layout_editor_absoluteX="8dp"-->
+            <!--tools:layout_editor_absoluteY="234dp" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/passwordField"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:ems="10"-->
+            <!--android:hint="Password:"-->
+            <!--android:inputType="textPassword"-->
+            <!--android:textColor="#000"-->
+            <!--tools:layout_editor_absoluteX="8dp"-->
+            <!--tools:layout_editor_absoluteY="286dp" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/loginButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:layout_marginTop="40dp"-->
+            <!--android:text="Login"-->
+            <!--android:textColor="#000"-->
+            <!--tools:layout_editor_absoluteX="8dp"-->
+            <!--tools:layout_editor_absoluteY="377dp" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/registerButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:text="Registration"-->
+            <!--android:textColor="#000"-->
+            <!--tools:layout_editor_absoluteX="8dp"-->
+            <!--tools:layout_editor_absoluteY="440dp" />-->
+
+
+    <!--</LinearLayout>-->
+<!--</android.support.constraint.ConstraintLayout>-->

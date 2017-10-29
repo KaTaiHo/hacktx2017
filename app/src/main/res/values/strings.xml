@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Safely</string>
     <string name="disaster_header">Report a Disaster</string>
+    <string name="title_activity_disaster_map">Map</string>
 </resources>

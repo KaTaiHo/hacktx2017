@@ -16,8 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
         setContentView(R.layout.activity_main);
 
@@ -101,7 +104,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            writeNewUser(username, userEmail);
+                            String uid = user.getUid();
+//                            System.out.println("uid " + s);
+//                            String id = mDatabase.push().getKey();
+                            System.out.println("data " + uid);
+
+                            mDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        System.out.println("size is " + dataSnapshot.getChildren().toString());
+                                        for (DataSnapshot issue : dataSnapshot.getChildren()) {
+                                            // do something with the individual "issues"
+                                            if (issue.getKey().equals("isFirstResponder")) {
+                                                if ((boolean)issue.getValue() == false) {
+                                                    Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
+                                                    startActivity(changeToDisasterSelection);
+                                                }
+                                                else {
+                                                    //go to next page
+                                                }
+                                            }
+                                            System.out.println(issue);
+                                        }
+                                    }
+                                    else {
+                                        System.out.println("THE USER IDENT IS WRONG");
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+                            writeNewUser(username, userEmail, user.getUid());
+
+
                             Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
                             startActivity(changeToDisasterSelection);
                         } else {
@@ -136,8 +177,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
-                            startActivity(changeToDisasterSelection);
+                            String uid = user.getUid();
+//                            System.out.println("uid " + s);
+//                            String id = mDatabase.push().getKey();
+                            System.out.println("data " + uid);
+                            mDatabase.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        System.out.println("size is " + dataSnapshot.getChildren().toString());
+                                        for (DataSnapshot issue : dataSnapshot.getChildren()) {
+                                            // do something with the individual "issues"
+                                            if (issue.getKey().equals("isFirstResponder")) {
+                                                if ((boolean)issue.getValue() == false) {
+                                                    Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
+                                                    startActivity(changeToDisasterSelection);
+                                                }
+                                                else {
+                                                    //go to next page
+                                                }
+                                            }
+                                            System.out.println(issue);
+                                        }
+                                    }
+                                    else {
+                                        System.out.println("THE USER IDENT IS WRONG");
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -162,8 +237,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void writeNewUser(String userId, String email) {
+    private void writeNewUser(String userId, String email, String uid) {
         User user = null;
+
         if (userId.equals("admin")) {
             user = new User(userId, email, true);
         }
@@ -171,6 +247,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             user = new User(userId, email, false);
         }
 
-        mDatabase.child("users").child(userId).setValue(user);
+        mDatabase.child(uid).setValue(user);
+
     }
 }
