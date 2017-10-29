@@ -101,7 +101,8 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
         mDatabase.child("emergencies").child(uid).child("latitude").setValue(latitude);
         mDatabase.child("emergencies").child(uid).child("longitude").setValue(longitude);
 
-//        Intent changeToDisasterMap = new Intent(getApplicationContext(), DisasterMap.class);
-//        startActivity(changeToDisasterMap);
+
+        Intent changeToSubmitSuccesful = new Intent(getApplicationContext(), SubmitSuccesful.class);
+        startActivity(changeToSubmitSuccesful);
     }
 }

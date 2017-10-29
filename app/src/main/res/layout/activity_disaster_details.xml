@@ -84,11 +84,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:text="Are you in need of emergency assitance?"
+                android:text="How intense are the conditions?"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:textSize="22sp"
-                tools:text="How intense are the conditions?" />
+                android:textSize="22sp" />
 
             <RadioGroup
                 android:id="@+id/typeOfEmergencyGroup"
@@ -172,7 +171,7 @@
             android:id="@+id/submitDisaster"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="#bebebe"
             android:text="Submit Report"
             android:textColor="#23272a"
@@ -180,7 +179,7 @@
             tools:layout_editor_absoluteY="377dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="bottom"/>
+            android:gravity="center"/>
 
     </LinearLayout>
 

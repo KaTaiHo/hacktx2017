@@ -23,7 +23,7 @@
             android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:ems="10"
             android:text="@string/disaster_header"
             android:textAlignment="center"
@@ -152,6 +152,7 @@
             android:layout_height="120dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_marginBottom="40dp"
             android:orientation="horizontal"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
@@ -203,16 +204,31 @@
                 app:srcCompat="@drawable/wildfire"
                 tools:layout_editor_absoluteX="15dp"
                 tools:layout_editor_absoluteY="198dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/mapButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:backgroundTint="#bebebe"
+                android:gravity="center"
+                android:text="View Disaster Map"
+                android:textColor="#23272a"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="377dp" />
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/mapButton"
-        android:layout_width="306dp"
-        android:layout_height="0dp"
-        android:text="Map"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="456dp" />
 
 </android.support.constraint.ConstraintLayout>
