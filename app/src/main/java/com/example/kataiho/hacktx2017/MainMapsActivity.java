@@ -75,7 +75,7 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         final ArrayList<List<Double>> myEmergCoordinates = new ArrayList<List<Double>>();
         final ArrayList<String> typeOfEmergency = new ArrayList<String>();
-
+        final ArrayList<String> severities = new ArrayList<>();
         final HashMap<String, Float> colorMap = new HashMap<>();
         colorMap.put("Blizzard", new Float(BitmapDescriptorFactory.HUE_AZURE));
         colorMap.put("Eruption", new Float(BitmapDescriptorFactory.HUE_RED));
@@ -89,7 +89,6 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         mDatabase.child("emergencies").addListenerForSingleValueEvent(new ValueEventListener() {
 
-            String severity;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -102,7 +101,7 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
                         HashMap<String, Object> dataTemp = (HashMap)(issue.getValue());
                         Double d1 = (Double)(dataTemp.get("latitude"));
                         Double d2 = (Double)(dataTemp.get("longitude"));
-                        severity = (String)dataTemp.get("severity");
+                        String severity = (String)dataTemp.get("severity");
                         temp.add(d1);
                         temp.add(d2);
 
@@ -110,6 +109,7 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
 
                         typeOfEmergency.add(type);
                         myEmergCoordinates.add(temp);
+                        severities.add(severity);
                     }
                 }
                 else {
@@ -118,7 +118,7 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
                 System.out.println("size of this is " + myEmergCoordinates.size());
                 for (int i = 0; i < myEmergCoordinates.size(); i++) {
                     LatLng tempCoord = new LatLng(myEmergCoordinates.get(i).get(0), myEmergCoordinates.get(i).get(1));
-                    mMap.addMarker((new MarkerOptions().position(tempCoord).title(typeOfEmergency.get(i) + " (" + severity + ")").icon(BitmapDescriptorFactory.defaultMarker(
+                    mMap.addMarker((new MarkerOptions().position(tempCoord).title(typeOfEmergency.get(i) + " (" + severities.get(i) + ")").icon(BitmapDescriptorFactory.defaultMarker(
                             colorMap.get(typeOfEmergency.get(i))
                     ))));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(tempCoord));
