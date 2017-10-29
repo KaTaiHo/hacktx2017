@@ -117,9 +117,8 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
                 }
                 System.out.println("size of this is " + myEmergCoordinates.size());
                 for (int i = 0; i < myEmergCoordinates.size(); i++) {
-                    System.out.println("Severity Level: " + severity);
                     LatLng tempCoord = new LatLng(myEmergCoordinates.get(i).get(0), myEmergCoordinates.get(i).get(1));
-                    mMap.addMarker((new MarkerOptions().position(tempCoord).title("emergency " + i).icon(BitmapDescriptorFactory.defaultMarker(
+                    mMap.addMarker((new MarkerOptions().position(tempCoord).title(typeOfEmergency.get(i) + " (" + severity + ")").icon(BitmapDescriptorFactory.defaultMarker(
                             colorMap.get(typeOfEmergency.get(i))
                     ))));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(tempCoord));
