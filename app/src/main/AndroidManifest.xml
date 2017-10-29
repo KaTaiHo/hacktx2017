@@ -43,6 +43,7 @@
         <activity
             android:name=".MainMapsActivity"
             android:label="@string/title_activity_main_maps"></activity>
+        <activity android:name=".SubmitSuccesful"></activity>
     </application>
 
 </manifest>
