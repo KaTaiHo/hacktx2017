@@ -72,40 +72,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == registerButton) {
             //register the user
-            if (registerUser() && isOkay) {
-
-
-
-                Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
-                startActivity(changeToDisasterSelection);
-            }
+            registerUser();
         }
         else if (view == loginButton) {
-            //login the user via firebase
-            if (loginUser() && isOkay) {
-                //switch screens
-                Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
-                startActivity(changeToDisasterSelection);
-            }
+            loginUser();
         }
     }
 
-    public boolean registerUser() {
-        String userEmail = emailField.getText().toString().trim();
-        String userPassword = passwordField.getText().toString().trim();
-        String username = usernameField.getText().toString().trim();
+    public void registerUser() {
+        final String userEmail = emailField.getText().toString().trim();
+        final String userPassword = passwordField.getText().toString().trim();
+        final String username = usernameField.getText().toString().trim();
 
 
         if (userEmail.isEmpty()) {
             Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
-            isOkay = false;
-            return isOkay;
         }
 
         if (userPassword.isEmpty()) {
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
-            isOkay = false;
-            return isOkay;
         }
 
         mAuth.createUserWithEmailAndPassword(userEmail, userPassword)
@@ -116,39 +101,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            MainActivity.isOkay = true;
+                            writeNewUser(username, userEmail);
+                            Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
+                            startActivity(changeToDisasterSelection);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            MainActivity.isOkay = false;
                         }
 
                         // ...
                     }
                 });
-
-        if (isOkay) {
-            writeNewUser(username, userEmail);
-        }
-
-        return isOkay;
     }
 
-    public boolean loginUser() {
+    public void loginUser() {
         String userEmail = emailField.getText().toString().trim();
         String userPassword = passwordField.getText().toString().trim();
 
 
         if (userEmail.isEmpty()) {
             Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
-            isOkay = false;
-            return isOkay;
+
         }
 
         if (userPassword.isEmpty()) {
             Toast.makeText(this, "Please enter your password", Toast.LENGTH_SHORT).show();
-            isOkay = false;
-            return isOkay;
         }
 
         mAuth.signInWithEmailAndPassword(userEmail, userPassword)
@@ -159,18 +136,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            MainActivity.isOkay = true;
+                            Intent changeToDisasterSelection = new Intent(getApplicationContext(), DisasterSelection.class);
+                            startActivity(changeToDisasterSelection);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            MainActivity.isOkay = false;
                         }
 
                         // ...
                     }
                 });
-
-        return isOkay;
     }
 
     @Override
