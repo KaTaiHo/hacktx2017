@@ -6,8 +6,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,12 +20,19 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class DisasterDetails extends AppCompatActivity implements View.OnClickListener {
+public class DisasterDetails extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
     String disasterType;
 
     private Button submitDisasterButton;
@@ -36,9 +45,7 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
     private Button submitDisaster;
 
     private EditText details;
-
-    private LocationManager locationManager;
-    private LocationListener locationListener;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,65 +66,9 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
 
         details = (EditText) findViewById(R.id.details);
 
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                String uid = user.getUid();
-                mDatabase.child(uid).child("post").child("latitude").setValue(location.getLatitude());
-                mDatabase.child(uid).child("post").child("Longitude").setValue(location.getLongitude());
-            }
-
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
-
-            @Override
-            public void onProviderEnabled(String s) {
-
-            }
-
-            @Override
-            public void onProviderDisabled(String s) {
-
-            }
-        };
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-
-                requestPermissions(new String[]{
-                        android.Manifest.permission.ACCESS_FINE_LOCATION,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                        android.Manifest.permission.INTERNET
-                }, 10);
-                return;
-            }
-        }
-        else {
-            locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-        }
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 10:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    configureButton();
-                return;
-        }
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -143,7 +94,18 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
         mDatabase.child(uid).child("post").child("emergencyType").setValue(data);
         mDatabase.child(uid).child("post").child("details").setValue(details.getText().toString());
 
+
 //        Intent changeToDisasterMap = new Intent(getApplicationContext(), DisasterMap.class);
 //        startActivity(changeToDisasterMap);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
