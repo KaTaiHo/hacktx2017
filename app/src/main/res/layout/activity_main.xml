@@ -51,7 +51,6 @@
             android:ems="10"
             android:hint="Email:"
             android:inputType="textEmailAddress"
-            android:text="dummy@gmail.com"
             android:textColor="#ffffff"
             android:textColorHint="#f5f5f5"
             android:textColorLink="@color/colorPrimary"
@@ -65,7 +64,6 @@
             android:ems="10"
             android:hint="Password:"
             android:inputType="textPassword"
-            android:text="test1234"
             android:textColor="#ffffff"
             android:textColorHint="#f5f5f5"
             android:textColorLink="@color/colorPrimary"
@@ -78,7 +76,7 @@
             android:layout_height="48dp"
             android:layout_marginTop="40dp"
             android:backgroundTint="#bebebe"
-            android:text="Login"
+            android:text="Login!"
             android:textColor="#23272a"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="377dp" />
@@ -88,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:backgroundTint="#bebebe"
-            android:text="Registration"
+            android:text="New User? Register!"
             android:textColor="#23272a"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="440dp" />
