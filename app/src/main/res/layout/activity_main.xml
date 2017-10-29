@@ -22,10 +22,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
+            android:id="@+id/usernameField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220dp"
+            android:ems="10"
+            android:hint="Username:"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="234dp" />
+
+        <EditText
             android:id="@+id/emailField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="240dp"
             android:ems="10"
             android:hint="Email:"
             android:inputType="textEmailAddress"
@@ -62,6 +72,7 @@
             android:textColor="#000"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="440dp" />
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

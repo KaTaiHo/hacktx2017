@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText emailField, passwordField;
+    private EditText emailField, passwordField, usernameField;
     private Button loginButton, registerButton;
     private static final String TAG = "MainActivity";
 
@@ -41,8 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         registerButton = (Button) findViewById(R.id.registerButton);
         loginButton = (Button) findViewById(R.id.loginButton);
+
         emailField = (EditText) findViewById(R.id.emailField);
         passwordField = (EditText) findViewById(R.id.passwordField);
+        usernameField = (EditText) findViewById(R.id.usernameField);
 
         registerButton.setOnClickListener(this);
         loginButton.setOnClickListener(this);
@@ -90,7 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean registerUser() {
         String userEmail = emailField.getText().toString().trim();
-        String userPassword = emailField.getText().toString().trim();
+        String userPassword = passwordField.getText().toString().trim();
+        String username = usernameField.getText().toString().trim();
 
 
         if (userEmail.isEmpty()) {
@@ -124,12 +127,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
+        if (isOkay) {
+            writeNewUser(username, userEmail);
+        }
+
         return isOkay;
     }
 
     public boolean loginUser() {
         String userEmail = emailField.getText().toString().trim();
-        String userPassword = emailField.getText().toString().trim();
+        String userPassword = passwordField.getText().toString().trim();
 
 
         if (userEmail.isEmpty()) {
@@ -180,8 +187,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email, false);
+    private void writeNewUser(String userId, String email) {
+        User user = null;
+        if (userId.equals("admin")) {
+            user = new User(userId, email, true);
+        }
+        else{
+            user = new User(userId, email, false);
+        }
+
         mDatabase.child("users").child(userId).setValue(user);
     }
 }
