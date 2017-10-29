@@ -2,6 +2,7 @@ package com.example.kataiho.hacktx2017;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -32,7 +33,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class DisasterDetails extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
+import java.security.Provider;
+
+public class DisasterDetails extends AppCompatActivity implements View.OnClickListener {
     String disasterType;
 
     private Button submitDisasterButton;
@@ -45,15 +48,21 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
     private Button submitDisaster;
 
     private EditText details;
-    private GoogleMap mMap;
+
+    private double longitude;
+    private double latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_disaster_details);
         disasterType = getIntent().getStringExtra("Type");
         TextView header = (TextView) findViewById(R.id.typeHeader);
         header.setText("Report a " + disasterType + " in your area");
+
+        longitude = getIntent().getDoubleExtra("longitude", 0.0);
+        latitude = getIntent().getDoubleExtra("latitude", 0.0);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
@@ -65,10 +74,6 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
         typeOfEmergencyGroup = (RadioGroup) findViewById(R.id.typeOfEmergencyGroup);
 
         details = (EditText) findViewById(R.id.details);
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -93,19 +98,11 @@ public class DisasterDetails extends AppCompatActivity implements View.OnClickLi
 
         mDatabase.child(uid).child("post").child("emergencyType").setValue(data);
         mDatabase.child(uid).child("post").child("details").setValue(details.getText().toString());
+        mDatabase.child(uid).child("post").child("latitude").setValue(latitude);
+        mDatabase.child(uid).child("post").child("longitude").setValue(longitude);
 
 
 //        Intent changeToDisasterMap = new Intent(getApplicationContext(), DisasterMap.class);
 //        startActivity(changeToDisasterMap);
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

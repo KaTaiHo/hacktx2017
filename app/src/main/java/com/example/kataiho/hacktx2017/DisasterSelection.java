@@ -47,47 +47,47 @@ public class DisasterSelection extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         if (view == blizzardButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Blizzard");
             startActivity(event);
         }
         else if (view == earthquakeButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Earthquake");
             startActivity(event);
         }
         else if (view == eruptionButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Eruption");
             startActivity(event);
         }
         else if(view == floodButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Flood");
             startActivity(event);
         }
         else if(view == hurricaneButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Hurricane");
             startActivity(event);
         }
         else if(view == stormButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Storm");
             startActivity(event);
         }
         else if(view == tornadoButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Tornado");
             startActivity(event);
         }
         else if(view == tsunamiButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Tsunami");
             startActivity(event);
         }
         else if(view == wildfireButton) {
-            Intent event = new Intent(getBaseContext(), DisasterDetails.class);
+            Intent event = new Intent(getBaseContext(), DisasterMap.class);
             event.putExtra("Type", "Wildfire");
             startActivity(event);
         }
