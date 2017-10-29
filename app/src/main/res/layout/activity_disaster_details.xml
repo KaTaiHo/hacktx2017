@@ -42,6 +42,7 @@
             android:orientation="horizontal">
 
             <RadioGroup
+                android:id="@+id/emergencyGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" >
@@ -90,6 +91,7 @@
                 tools:text="How intense are the conditions?" />
 
             <RadioGroup
+                android:id="@+id/typeOfEmergencyGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -152,7 +154,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/passwordField2"
+            android:id="@+id/details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
